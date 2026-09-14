@@ -6,7 +6,8 @@ This repository contains the source code accompanying the book
 The examples demonstrate how to build a REST API using TMS XData and Delphi, and how to create a Delphi VCL client that communicates with it.
 
 > **Repository status:** This repository is currently being prepared.
-> Source code will be added progressively as the repository is built.
+> The source code is being added progressively to preserve the development
+> history that accompanies the examples in the book.
 
 ## Repository Structure
 
