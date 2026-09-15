@@ -22,9 +22,16 @@ Type
     property CountryID : Nullable<TGUID> read fCountryID write fCountryID;
     property CountryName : Nullable<String> read fCountryName write fCountryName;
     property CountryAbbreviation : Nullable<String> read fCountryAbbreviation write fCountryAbbreviation;
+
   end;
 
   TArchers = class(TObjectList<TArcher>)
+  end;
+
+  TUpdateArcherDTO = class(TObject)
+    ArcherName : string;
+    BowType : TBowType;
+    CountryAbbreviation : Nullable<string>;
   end;
 
 implementation

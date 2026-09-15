@@ -4,7 +4,10 @@ interface
 
 uses
   XData.Service.Common,
-  uArcher;
+  XData.Security.Attributes,
+  Aurelius.Types.Nullable,
+  uArcher,
+  uBowType;
 
 type
   [ServiceContract]
@@ -16,6 +19,18 @@ type
 
     [HttpGet]
     function GetArchers : TArchers;
+
+    [Authorize]
+    [HttpPost]
+    function NewArcher(ArcherName : string; BowType : TBowType; CountryAbbreviation : Nullable<string>) : TArcher;
+
+    [Authorize]
+    [HttpPut]
+    function updateArcher(ArcherID : TGUID; ArcherValues : TUpdateArcherDTO) : TArcher;
+
+    [Authorize]
+    [HttpDelete]
+    procedure DeleteArcher(ArcherID : TGUID);
 
   end;
 

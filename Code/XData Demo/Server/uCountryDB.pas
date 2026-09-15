@@ -3,7 +3,8 @@ unit uCountryDB;
 interface
 
 uses
-  uCountry, uDmDatabase;
+  uCountry, uDmDatabase,
+  Aurelius.Types.Nullable;
 
 Type
 
@@ -12,6 +13,7 @@ Type
     public
     class function GetCountryFromDB(aCountryID : TGUID; aCountry : TCountry) : Boolean;  overload;
     class function GetCountryFromDB(aCountryAbbreviation : String; aCountry : TCountry) : Boolean;  overload;
+    class function GetCountryIDFromDB(aCountryAbbreviation : string) : nullable<TGUID>;
   end;
 
 implementation
@@ -65,6 +67,28 @@ begin
       aCountry.CountryID := StringToGUID(lQry.FieldByName('COUNTRYID').asString);
     end;
     Result := not lQry.IsEmpty;
+    lQry.Close;
+  finally
+    lQry.Free;
+  end;
+end;
+
+class function TCountryDB.GetCountryIDFromDB(
+  aCountryAbbreviation: string): nullable<TGUID>;
+begin
+  Result := SNull;
+  var lQry := dmArcherySystem.GetQuery;
+  try
+    lQry.SQL.Add('SELECT COUNTRYID');
+    lQry.SQL.Add('FROM COUNTRY');
+    lQry.SQL.Add('WHERE');
+    lQry.SQL.Add('COUNTRYABBREVIATION = :CountryAbbreviation');
+    lQry.ParamByName('CountryAbbreviation').asString := aCountryAbbreviation;
+    lQry.Open;
+    if not lQry.IsEmpty then
+    begin
+      Result := StringToGUID(lQry.FieldByName('COUNTRYID').asString);
+    end;
     lQry.Close;
   finally
     lQry.Free;
