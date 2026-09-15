@@ -3,9 +3,6 @@ object dmArcherySystem: TdmArcherySystem
   Width = 640
   object fdConArcherySystem: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Data\EKON\EKON 2026 (30)\GettingStartedWithXData_Pri' +
-        'vate\ARCHERYSYSTEM.GDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=IB')

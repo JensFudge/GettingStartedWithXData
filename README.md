@@ -11,6 +11,15 @@ The examples demonstrate how to build a REST API using TMS XData and Delphi, and
 
 Contains the utility used to create the InterBase database used throughout the examples.
 
+#### Database Setup
+
+The database path is machine-specific and is therefore not included
+in the connection configuration.
+
+After creating the InterBase database using `DatabaseCreate`, open the
+server project and set the database connection to the location of the
+created database before running the server.
+
 ### XDataDemo
 
 Contains the main example application:
