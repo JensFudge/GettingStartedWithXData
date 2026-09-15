@@ -5,6 +5,7 @@ interface
 uses
   XData.Client,
   Aurelius.types.Nullable,
+  Sparkle.http.client,
   ArcherService,
   LoginService,
   uArcher,
@@ -15,6 +16,7 @@ Type
      private
        fClient : TXDataClient;
        fToken : string;
+       procedure ClientHttpClientSendingRequest(ARequest : THttpRequest);
      public
        property Token: string read FToken;
        constructor Create(aBaseUrl : string);
@@ -28,10 +30,17 @@ implementation
 
 { TArcheryClient }
 
+procedure TArcheryClient.ClientHttpClientSendingRequest(ARequest: THttpRequest);
+begin
+  if fToken <> '' then
+    ARequest.Headers.SetValue('Authorization', 'Bearer ' + fToken);
+end;
+
 constructor TArcheryClient.Create(aBaseUrl : string);
 begin
   fClient := TXDataClient.Create;
   fClient.Uri := aBaseUrl;
+  fClient.HttpClient.OnSendingRequest :=  ClientHttpClientSendingRequest;
 end;
 
 destructor TArcheryClient.Destroy;
@@ -53,6 +62,9 @@ begin
    var lLoginService : ILoginService;
    lLoginService := fClient.Service<ILoginService>;
    fToken := lLoginService.Login(aUser, aPass);
+
+
+
 end;
 
 function TArcheryClient.NewArcher(aName: string; aBowtype: TBowType;

@@ -83,7 +83,13 @@ begin
      lLItem.SubItems.Add(lArcher.CountryAbbreviation.ValueOrDefault);
      lLItem.SubItems.Add(lArcher.CountryName.ValueOrDefault);
    finally
-     lArcher.Free;
+    // lArcher.Free;
+    // I intentionally have commented this out, as this is a demo
+    // According to the documentation:
+    //Any object of type TStream or TList<T> returned from the server is not destroyed. You must handle the lifetime of those objects yourself.
+    //Any other object returned from the server which type is not the ones mentioned in the previous item is automatically destroyed by default.
+
+    //lArcher is not a list, so it's free'd automatically
    end;
   end;
 end;
