@@ -15,6 +15,7 @@ type
     procedure btStartClick(ASender: TObject);
     procedure btStopClick(ASender: TObject);
     procedure FormCreate(ASender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   strict private
     procedure UpdateGUI;
   end;
@@ -42,6 +43,12 @@ procedure TMainForm.btStopClick(ASender: TObject);
 begin
   ServerContainer.SparkleHttpSysDispatcher.Stop;
   UpdateGUI;
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if ServerContainer.SparkleHttpSysDispatcher.Active then
+     ServerContainer.SparkleHttpSysDispatcher.Stop;
 end;
 
 procedure TMainForm.FormCreate(ASender: TObject);

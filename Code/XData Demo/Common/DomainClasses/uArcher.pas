@@ -3,7 +3,7 @@ unit uArcher;
 interface
 
 uses
-  uBowType, Aurelius.Types.Nullable, system.Generics.Collections;
+  uBowType, Bcl.Types.Nullable, system.Generics.Collections;
 
 Type
 
@@ -23,9 +23,14 @@ Type
     property CountryName : Nullable<String> read fCountryName write fCountryName;
     property CountryAbbreviation : Nullable<String> read fCountryAbbreviation write fCountryAbbreviation;
 
+    procedure Assign(aSource : TArcher);
+    function Clone : TArcher;
+
   end;
 
   TArchers = class(TObjectList<TArcher>)
+    public
+      procedure Assign(aSource : TArchers);
   end;
 
   TUpdateArcherDTO = class(TObject)
@@ -35,5 +40,32 @@ Type
   end;
 
 implementation
+
+{ TArcher }
+
+procedure TArcher.Assign(aSource: TArcher);
+begin
+  self.ArcherID := aSource.ArcherID;
+  self.ArcherName := aSource.ArcherName;
+  self.BowType := aSource.BowType;
+  self.CountryID := aSource.CountryID;
+  self.CountryName := aSource.CountryName;
+  self.CountryAbbreviation := aSource.CountryAbbreviation;
+end;
+
+function TArcher.Clone: TArcher;
+begin
+  Result := TArcher.Create;
+  Result.Assign(self);
+end;
+
+{ TArchers }
+
+procedure TArchers.Assign(aSource: TArchers);
+begin
+  self.Clear;
+  for var lArcher in aSource do
+    Add(lArcher.Clone);
+end;
 
 end.

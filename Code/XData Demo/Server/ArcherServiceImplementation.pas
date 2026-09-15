@@ -5,7 +5,7 @@ interface
 uses
   XData.Server.Module,
   XData.Service.Common,
-  Aurelius.Types.Nullable,
+  Bcl.Types.Nullable,
   ArcherService,
   uBowType,
   uArcher;
@@ -55,16 +55,16 @@ begin
   TArcherDB.GetArchersFromDB(Result);
 end;
 
-procedure TArcherService.RequireAdmin(aOperatioName : string);
+procedure TArcherService.RequireAdmin(aOperationName : string);
 begin
    if TXDataOperationContext.Current.Request.User.Claims.Exists('admin') then
    begin
      var isAdmin :=  TXDataOperationContext.Current.Request.User.Claims['admin'].asBoolean;
      if not isAdmin then
-       Raise EXDataHttpForbidden.Create(format('You must have administrator privileges to perform %s',[aOperatioName]))
+       Raise EXDataHttpForbidden.Create(format('You must have administrator privileges to perform %s',[aOperationName]))
    end
    else
-     Raise EXDataHttpForbidden.Create(format('You must have administrator privileges to perform %s',[aOperatioName]))
+     Raise EXDataHttpForbidden.Create(format('You must have administrator privileges to perform %s',[aOperationName]))
 end;
 
 

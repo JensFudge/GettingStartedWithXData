@@ -135,8 +135,8 @@
         <DCCReference Include="..\Common\DomainClasses\uBowtype.pas"/>
         <DCCReference Include="..\Common\DomainClasses\uCountry.pas"/>
         <DCCReference Include="uArcheryClient.pas"/>
-        <DCCReference Include="ufrmNewArcher.pas">
-            <Form>frmNewArcher</Form>
+        <DCCReference Include="ufrmArcher.pas">
+            <Form>frmArcher</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmLogin.pas">

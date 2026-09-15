@@ -5,7 +5,7 @@ interface
 uses
   XData.Service.Common,
   XData.Security.Attributes,
-  Aurelius.Types.Nullable,
+  Bcl.Types.Nullable,
   uArcher,
   uBowType;
 

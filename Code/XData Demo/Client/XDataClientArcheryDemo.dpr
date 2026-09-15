@@ -11,7 +11,7 @@ uses
   uBowtype in '..\Common\DomainClasses\uBowtype.pas',
   uCountry in '..\Common\DomainClasses\uCountry.pas',
   uArcheryClient in 'uArcheryClient.pas',
-  ufrmNewArcher in 'ufrmNewArcher.pas' {frmNewArcher},
+  ufrmArcher in 'ufrmArcher.pas' {frmArcher},
   ufrmLogin in 'ufrmLogin.pas' {frmLogin};
 
 {$R *.res}
@@ -21,7 +21,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmNewArcher, frmNewArcher);
+  Application.CreateForm(TfrmArcher, frmArcher);
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.Run;
 end.
