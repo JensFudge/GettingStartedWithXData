@@ -14,7 +14,7 @@ type
   [ServiceImplementation]
   TArcherService = class(TInterfacedObject, IArcherService)
   private
-    procedure RequireAdmin(aOperatioName : string);
+    procedure RequireAdmin(aOperationName : string);
    function GetCountryID(aCountryAbbreviation : Nullable<string>) : Nullable<TGUID>;
   public
     function GetArcher(ID : TGUID) : TArcher;
