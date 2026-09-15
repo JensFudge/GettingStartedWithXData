@@ -5,10 +5,6 @@ This repository contains the source code accompanying the book
 
 The examples demonstrate how to build a REST API using TMS XData and Delphi, and how to create a Delphi VCL client that communicates with it.
 
-> **Repository status:** This repository is currently being prepared.
-> The source code is being added progressively to preserve the development
-> history that accompanies the examples in the book.
-
 ## Repository Structure
 
 ### DatabaseCreate
@@ -47,6 +43,11 @@ See [LICENSE](LICENSE) for details.
 
 ## About the Book
 
-*Getting Started with XData* introduces TMS XData by building a small client-server application step by step.
+*Getting Started with XData* introduces TMS XData by building a REST API and a Delphi VCL client that consumes it, step by step.
 
-The focus is on getting a working system up and running while keeping the examples simple and removing unnecessary complexity.
+The focus is on getting a working system up and running while keeping
+the examples simple and removing unnecessary complexity.
+
+The book is available from Amazon:
+
+[Getting Started with XData on Amazon](https://www.amazon.com/dp/8797729221)
