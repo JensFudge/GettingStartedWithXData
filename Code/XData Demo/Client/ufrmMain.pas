@@ -11,9 +11,14 @@ type
   TfrmMain = class(TForm)
     btnGetArchers: TButton;
     lvArchers: TListView;
+    btnNewArcher: TButton;
+    btnLogin: TButton;
+    edToken: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGetArchersClick(Sender: TObject);
+    procedure btnNewArcherClick(Sender: TObject);
+    procedure btnLoginClick(Sender: TObject);
   private
     { Private declarations }
     fClient : TArcheryClient;
@@ -29,7 +34,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uBowType;
+  uBowType, ufrmNewArcher, aurelius.Types.Nullable, uArcher, ufrmLogin;
 
 procedure TfrmMain.btnGetArchersClick(Sender: TObject);
 begin
@@ -48,6 +53,38 @@ begin
     end;
   finally
     lArchers.Free;
+  end;
+end;
+
+procedure TfrmMain.btnLoginClick(Sender: TObject);
+begin
+  var lUser : string;
+  var lPass : string;
+  if frmLogin.GetLogin(lUser, lPass) then
+  begin
+    fClient.Login(lUser, lPass);
+    edToken.Text := fClient.Token;
+  end;
+end;
+
+procedure TfrmMain.btnNewArcherClick(Sender: TObject);
+begin
+  var lArcherName : string;
+  var lBowType : TBowType;
+  var lCountryAbbreviation : Nullable<string>;
+  if frmNewArcher.GetNewArcher(lArcherName, lBowType, lCountryAbbreviation) then
+  begin
+   var lArcher : TArcher := fClient.NewArcher(lArcherName, lBowType, lCountryAbbreviation);
+   try
+     var lLItem := lvArchers.Items.Add;
+     lLItem.Caption :=  (GUIDToString(lArcher.ArcherID));
+     lLItem.SubItems.Add(lArcher.ArcherName);
+     lLItem.SubItems.Add(BowTypeToString(lArcher.BowType));
+     lLItem.SubItems.Add(lArcher.CountryAbbreviation.ValueOrDefault);
+     lLItem.SubItems.Add(lArcher.CountryName.ValueOrDefault);
+   finally
+     lArcher.Free;
+   end;
   end;
 end;
 

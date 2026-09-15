@@ -10,7 +10,9 @@ uses
   uArcher in '..\Common\DomainClasses\uArcher.pas',
   uBowtype in '..\Common\DomainClasses\uBowtype.pas',
   uCountry in '..\Common\DomainClasses\uCountry.pas',
-  uArcheryClient in 'uArcheryClient.pas';
+  uArcheryClient in 'uArcheryClient.pas',
+  ufrmNewArcher in 'ufrmNewArcher.pas' {frmNewArcher},
+  ufrmLogin in 'ufrmLogin.pas' {frmLogin};
 
 {$R *.res}
 
@@ -19,5 +21,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmNewArcher, frmNewArcher);
+  Application.CreateForm(TfrmLogin, frmLogin);
   Application.Run;
 end.
