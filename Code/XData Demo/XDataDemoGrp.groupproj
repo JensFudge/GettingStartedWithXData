@@ -6,6 +6,9 @@
         <Projects Include="Server\XDataServerArcheryDemo.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Client\XDataClientArcheryDemo.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="..\DatabaseCreate\ArcherDBSetup.dproj">
             <Dependencies/>
         </Projects>
@@ -26,6 +29,15 @@
     <Target Name="XDataServerArcheryDemo:Make">
         <MSBuild Projects="Server\XDataServerArcheryDemo.dproj" Targets="Make"/>
     </Target>
+    <Target Name="XDataClientArcheryDemo">
+        <MSBuild Projects="Client\XDataClientArcheryDemo.dproj"/>
+    </Target>
+    <Target Name="XDataClientArcheryDemo:Clean">
+        <MSBuild Projects="Client\XDataClientArcheryDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XDataClientArcheryDemo:Make">
+        <MSBuild Projects="Client\XDataClientArcheryDemo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="ArcherDBSetup">
         <MSBuild Projects="..\DatabaseCreate\ArcherDBSetup.dproj"/>
     </Target>
@@ -36,13 +48,13 @@
         <MSBuild Projects="..\DatabaseCreate\ArcherDBSetup.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="XDataServerArcheryDemo;ArcherDBSetup"/>
+        <CallTarget Targets="XDataServerArcheryDemo;XDataClientArcheryDemo;ArcherDBSetup"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="XDataServerArcheryDemo:Clean;ArcherDBSetup:Clean"/>
+        <CallTarget Targets="XDataServerArcheryDemo:Clean;XDataClientArcheryDemo:Clean;ArcherDBSetup:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="XDataServerArcheryDemo:Make;ArcherDBSetup:Make"/>
+        <CallTarget Targets="XDataServerArcheryDemo:Make;XDataClientArcheryDemo:Make;ArcherDBSetup:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
