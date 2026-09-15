@@ -13,6 +13,10 @@ type
 
     [HttpGet]
     function GetArcher(ID : TGUID) : TArcher;
+
+    [HttpGet]
+    function GetArchers : TArchers;
+
   end;
 
 implementation

@@ -13,6 +13,9 @@ type
 
     [HttpGet]
     function GetCountry(ID : TGUID) : TCountry;
+
+    [HttpGet]
+    function GetCountryAndArchers(CountryAbbreviation : string) : TCountryArchersDTO;
   end;
 
 implementation

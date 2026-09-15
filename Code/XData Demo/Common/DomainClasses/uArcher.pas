@@ -3,7 +3,7 @@ unit uArcher;
 interface
 
 uses
-  uBowType, Aurelius.Types.Nullable;
+  uBowType, Aurelius.Types.Nullable, system.Generics.Collections;
 
 Type
 
@@ -22,6 +22,9 @@ Type
     property CountryID : Nullable<TGUID> read fCountryID write fCountryID;
     property CountryName : Nullable<String> read fCountryName write fCountryName;
     property CountryAbbreviation : Nullable<String> read fCountryAbbreviation write fCountryAbbreviation;
+  end;
+
+  TArchers = class(TObjectList<TArcher>)
   end;
 
 implementation
