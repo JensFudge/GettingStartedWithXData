@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{60D69556-72F4-48E5-B846-94823E776D4F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\XDataServerArcheryDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\DatabaseCreate\ArcherDBSetup.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="XDataServerArcheryDemo">
+        <MSBuild Projects="Server\XDataServerArcheryDemo.dproj"/>
+    </Target>
+    <Target Name="XDataServerArcheryDemo:Clean">
+        <MSBuild Projects="Server\XDataServerArcheryDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XDataServerArcheryDemo:Make">
+        <MSBuild Projects="Server\XDataServerArcheryDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArcherDBSetup">
+        <MSBuild Projects="..\DatabaseCreate\ArcherDBSetup.dproj"/>
+    </Target>
+    <Target Name="ArcherDBSetup:Clean">
+        <MSBuild Projects="..\DatabaseCreate\ArcherDBSetup.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArcherDBSetup:Make">
+        <MSBuild Projects="..\DatabaseCreate\ArcherDBSetup.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="XDataServerArcheryDemo;ArcherDBSetup"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="XDataServerArcheryDemo:Clean;ArcherDBSetup:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="XDataServerArcheryDemo:Make;ArcherDBSetup:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

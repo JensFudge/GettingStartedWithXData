@@ -18,17 +18,22 @@ type
 
 implementation
 
+uses
+  uArcherDB,
+  System.SysUtils,
+  XData.Sys.Exceptions;
+
 
 { TArcherService }
-//   ['{E9EB4A14-0E49-40E5-94F8-DA6015582D11}']
+
 
 function TArcherService.GetArcher(ID: TGUID): TArcher;
 begin
   Result := TArcher.Create;
   TXDataOperationContext.Current.Handler.ManagedObjects.Add(Result);
-  Result.ArcherID := ID;
-  Result.ArcherName := 'Jens Fudge';
-  Result.BowType := TBowType.btOlympicRecurve;
+
+  if not TArcherDB.GetArcherFromDB(ID, Result) then
+    raise EXDataHttpException.Create(404, format('Archer %s not found',[GuidToString(ID)]));    //Uses XData.Sys.Exceptions
 end;
 
 initialization

@@ -10,7 +10,12 @@ uses
   uArcher in '..\Common\DomainClasses\uArcher.pas',
   uBowtype in '..\Common\DomainClasses\uBowtype.pas',
   ArcherService in '..\Common\ArcherService.pas',
-  ArcherServiceImplementation in 'ArcherServiceImplementation.pas';
+  ArcherServiceImplementation in 'ArcherServiceImplementation.pas',
+  uDmDatabase in 'uDmDatabase.pas' {dmArcherySystem: TDataModule},
+  uArcherDB in 'uArcherDB.pas',
+  uCountryDB in 'uCountryDB.pas',
+  CountryService in '..\Common\CountryService.pas',
+  CountryServiceImplementation in 'CountryServiceImplementation.pas';
 
 {$R *.res}
 
@@ -19,5 +24,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TServerContainer, ServerContainer);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TdmArcherySystem, dmArcherySystem);
   Application.Run;
 end.
