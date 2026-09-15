@@ -133,6 +133,11 @@
         </DCCReference>
         <DCCReference Include="..\Common\HelloWorldService.pas"/>
         <DCCReference Include="HelloWorldServiceImplementation.pas"/>
+        <DCCReference Include="..\Common\DomainClasses\uCountry.pas"/>
+        <DCCReference Include="..\Common\DomainClasses\uArcher.pas"/>
+        <DCCReference Include="..\Common\DomainClasses\uBowtype.pas"/>
+        <DCCReference Include="..\Common\ArcherService.pas"/>
+        <DCCReference Include="ArcherServiceImplementation.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
