@@ -20,7 +20,9 @@ implementation
 
 uses
   System.SysUtils,
-  uBowType
+  uBowType,
+  FireDAC.Stan.Param,
+  Data.DB
   ;
 
 { TArcherDB }

@@ -3,10 +3,13 @@ unit HelloWorldService;
 interface
 
 uses
-  XData.Service.Common;
+  XData.Service.Common
+  ,XData.Security.Attributes
+  ;
 
 type
   [ServiceContract]
+  [Authorize]
   IHelloWorldService = interface(IInvokable)
     ['{40459B83-626F-44E6-A0CC-141EFC1EBD45}']
     [HttpGet]

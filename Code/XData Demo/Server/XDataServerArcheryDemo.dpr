@@ -15,7 +15,9 @@ uses
   uArcherDB in 'uArcherDB.pas',
   uCountryDB in 'uCountryDB.pas',
   CountryService in '..\Common\CountryService.pas',
-  CountryServiceImplementation in 'CountryServiceImplementation.pas';
+  CountryServiceImplementation in 'CountryServiceImplementation.pas',
+  LoginService in '..\Common\LoginService.pas',
+  LoginServiceImplementation in 'LoginServiceImplementation.pas';
 
 {$R *.res}
 

@@ -5,7 +5,8 @@ interface
 uses
   XData.Server.Module,
   XData.Service.Common,
-  HelloWorldService;
+  HelloWorldService,
+  System.SysUtils;
 
 type
   [ServiceImplementation]
@@ -20,7 +21,14 @@ implementation
 
 function THelloWorldService.HelloWorld: string;
 begin
-  Result := 'Hello from XData server';
+  var lUserID : string := 'unknown';
+
+  if TXDataOperationContext.Current.Request.User.Claims.Exists('UserID') then
+    lUserID := TXDataOperationContext.Current.Request.User.Claims['UserID'].asString;
+
+  var lExpiresD := TXDataOperationContext.Current.Request.User.Claims['exp'].asEpoch;
+  var lExpiresS := DateTimeTostr(lExpiresD);
+  Result := format('Hello %s from XData server. Your token will expire at %s',[lUserID, lExpiresS]);
 end;
 
 function THelloWorldService.Sum(A, B: double): double;

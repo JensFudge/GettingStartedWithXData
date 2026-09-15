@@ -147,6 +147,8 @@
         <DCCReference Include="uCountryDB.pas"/>
         <DCCReference Include="..\Common\CountryService.pas"/>
         <DCCReference Include="CountryServiceImplementation.pas"/>
+        <DCCReference Include="..\Common\LoginService.pas"/>
+        <DCCReference Include="LoginServiceImplementation.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
